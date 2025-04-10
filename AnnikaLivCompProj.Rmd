@@ -108,3 +108,4 @@ Number 	Date 	Time 	PathLengthmiles 	PathWidthyds 	F-Scale 	Killed 	Injured 	Cou
 93 	11/02/2024 	2224-2224 	0.3 	30 	EF? 	0 	0 	Pottawatomie 	4 SE Tribbey
 ```
 
+Liv will by analyzing the data, I will be creating charts and graphs based on the analysis. 
