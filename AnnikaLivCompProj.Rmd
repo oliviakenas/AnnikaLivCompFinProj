@@ -12,7 +12,7 @@ output:
 ## At this point we have uploaded the data that will be worked with. We plan to analyze the data and create graphs that will provide insight on the presence of tornadoes in Pottawatomie County. 
 
 ```{r}
-Number 	Date 	Time(CST) 	PathLength(miles) 	PathWidth(yards) 	F-Scale 	Killed 	Injured 	County 	Path
+Number 	Date 	Time 	PathLengthmiles 	PathWidthyds 	F-Scale 	Killed 	Injured 	County 	Path
 1 	12/02/1953 	2130 	1.5 	880 	F1 	0 	1 	Pottawatomie 	Shawnee
 2 	05/01/1954 	1800 	59 	10 	F4 	0 	65 	Pottawatomie/ Lincoln/ Creek 	NE of Dale - Meeker - Sparks - Davenport - near Depew
 3 	04/26/1955 	1200 	0.1 	10 	F1 	0 	0 	Pottawatomie 	near Shawnee
