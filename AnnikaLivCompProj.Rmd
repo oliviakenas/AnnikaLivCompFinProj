@@ -15,12 +15,12 @@ output:
 
 ##Scatter plot of length versus width
 ##Box plot of F scale
-##Ttest relating the path length in miles to the amount of people killed
-##Ttest relating the path length in miles to the amount of people injured
+##Ttest relating the path length in miles to the amount of people killed based on tornado months
 
 
 
 ```{r}
+tornadodata <- read.table(header=TRUE, text="
 Date  Time  PathLengthMiles  PathWidthYards  FScale  Killed  Injured
 12/02/1953 	2130 	1.5 	880 	1 	0 	1 	
 05/01/1954 	1800 	59 	10 	4 	0 	65 	
@@ -107,6 +107,16 @@ Date  Time  PathLengthMiles  PathWidthYards  FScale  Killed  Injured
 04/26/2024 	0353 	1.9 	75 	1 	0 	0 	
 04/26/2024 	0405 	2.4 	50 	0 	0 	0 	
 04/26/2024 	0428	10 	500 	1 	0 	0 	
-11/02/2024 	2210 	1 	30 	0 	0 	0 	
+11/02/2024 	2210 	1 	30 	0 	0 	0")	
+```
+
+##A plot was created with two sets of numbers, the path width in yards was made the set of x values, and the path length in miles was made the set of y values.
+## It should be noted that the p-value is 0.009674, which is statistically significant!
+
+```{r}
+distancemodel <- lm(PathLengthMiles~PathWidthYards, data=tornadodata)
+summary(distancemodel)
+plot(PathLengthMiles~PathWidthYards, data=tornadodata)
+abline(distancemodel)
 ```
 
