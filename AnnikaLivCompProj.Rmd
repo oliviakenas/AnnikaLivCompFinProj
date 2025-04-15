@@ -119,4 +119,33 @@ summary(distancemodel)
 plot(PathLengthMiles~PathWidthYards, data=tornadodata)
 abline(distancemodel)
 ```
+```{r}
+ggplot(tornadodata, aes(x = FScale, y = Injured, color = FScale)) + geom_point()
+```
+```{r}
+tornadodata <- aov(Injured~FScale, data=tornadodata)
+summary(tornadodata)
+```
+
+```{r}
+tornadodata$FScale <- as.factor(tornadodata$FScale)
+tornado_model <- aov(Injured ~ FScale, data = tornadodata)
+duckTukey <- TukeyHSD(tornado_model)
+duckTukey
+plot(duckTukey)
+```
+```{r}
+ggplot(tornadodata, aes(x = FScale, y = Killed, color = FScale)) + geom_point()
+```
+```{r}
+tornadodata <- aov(Killed~FScale, data=tornadodata)
+summary(tornadodata)
+```
+```{r}
+tornadodata$FScale <- as.factor(tornadodata$FScale)
+tornado_model <- aov(Killed ~ FScale, data = tornadodata)
+duckTukey <- TukeyHSD(tornado_model)
+duckTukey
+plot(duckTukey)
+```
 
