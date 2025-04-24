@@ -8,15 +8,9 @@ output:
 ---
 
 
-## tornadoes from 1950 to present in pottawatomie county- copied from weather.gov National Weather Service, National Oceanic and Atmospheric Administration
-## At this point we have uploaded the data that will be worked with. We plan to analyze the data and create graphs that will provide insight on the presence of tornadoes in Pottawatomie County. 
-
-##GAME PLAN
-
-##Scatter plot of length versus width
-##Box plot of F scale
-##Ttest relating the path length in miles to the amount of people killed based on tornado months
-
+## Background
+Tornadoes from 1950 to present in Pottawatomie County- copied from weather.gov National Weather Service, National Oceanic and Atmospheric Administration.
+The data was uploaded and into Rstudio and arranged into a data fram with appropriate labels and columns. The data was then worked with and analyzed with graphs in order to insight about the presence of tornadoes in Pottawatomie County. 
 
 
 ```{r}
@@ -110,15 +104,24 @@ Date  Time  PathLengthMiles  PathWidthYards  FScale  Killed  Injured
 11/02/2024 	2210 	1 	30 	0 	0 	0")	
 ```
 
-##A plot was created with two sets of numbers, the path width in yards was made the set of x values, and the path length in miles was made the set of y values.
-## It should be noted that the p-value is 0.009674, which is statistically significant!
+#Length and Width of Tornadoes
+A plot was created with two sets of numbers, the path width in yards was made the set of x values, and the path length in miles was made the set of y values. This created a linear regression model to analyze the relationship between the two distances. The scatter plot provides a visualization of the result. The data shows that for each additional yard in width, the path length increases by 0.0114 miles (slope of the line). Thus, there is a positive relationship between the two, and it is statistically significant p is 0.0097. R^2 is 0.077 which suggests that other factors might play a role in determining track distance, because the model explains only 7.7% of the path length variablity.
+
 
 ```{r}
 distancemodel <- lm(PathLengthMiles~PathWidthYards, data=tornadodata)
-summary(distancemodel)
 plot(PathLengthMiles~PathWidthYards, data=tornadodata)
 abline(distancemodel)
 ```
+#Model Output
+The data below shoes that there is about 0.0054 miles increase in length for about one yard.
+
+```{r}
+summary(distancemodel)
+```
+
+
+
 ```{r}
 ggplot(tornadodata, aes(x = FScale, y = Injured, color = FScale)) + geom_point()
 ```
