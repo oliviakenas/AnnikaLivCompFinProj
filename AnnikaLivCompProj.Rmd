@@ -114,7 +114,7 @@ plot(PathLengthMiles~PathWidthYards, data=tornadodata)
 abline(distancemodel)
 ```
 #Model Output
-The data below shoes that there is about 0.0054 miles increase in length for about one yard.
+The data below shows that there is about 0.0054 miles increase in length for about one yard.
 
 ```{r}
 summary(distancemodel)
@@ -125,10 +125,9 @@ summary(distancemodel)
 ```{r}
 ggplot(tornadodata, aes(x = FScale, y = Injured, color = FScale)) + geom_point()
 ```
-```{r}
-tornadodata <- aov(Injured~FScale, data=tornadodata)
-summary(tornadodata)
-```
+#Tornado FScale vs. Number of People Injured
+The plot shows the relationship between the tornado intensity and the number of injuries using the tornado data table. Each point represents an individual tornado event, plotted by the FScale (x-axis) and the number of people injured during that tornado event (y-scale). The color of each point also corresponds to the intensity of the Fscale, helping distinguish tornadoes by their intensity visually.
+
 
 ```{r}
 tornadodata$FScale <- as.factor(tornadodata$FScale)
@@ -137,13 +136,15 @@ duckTukey <- TukeyHSD(tornado_model)
 duckTukey
 plot(duckTukey)
 ```
-```{r}
-ggplot(tornadodata, aes(x = FScale, y = Killed, color = FScale)) + geom_point()
-```
-```{r}
-tornadodata <- aov(Killed~FScale, data=tornadodata)
-summary(tornadodata)
-```
+#FScale vs. Injured Data Analysis
+The analysis uses an ANOVA to test whether the average number of injuries differs significantly between tornadoes of different FScale ratings.The Tukey Test then identifies which specific FScale levels have statistically significant differences in injury counts.  
+First, FScale is converted to a factor and treated as a categorical variable. Next, the ANOVA was fit to test the null hypothesis that the mean number of injuries is the same across all FScale levels. 
+The results showed that there was a significant difference, but the between which groups was not specified.
+Then, a Tukey test was performed to identify which pairs are significantly different and created a plot showing the confidence levels. 
+# FScale vs. Injured Results
+The Tukey Test showed that there was no significant difference between FScales 3-0, 2-1, 3-1, and 3-2 (p>.0.05)
+The p values indicate that F4 and F5 tornadoes cause significantly more injuries than lower-scale tornadoes 
+
 ```{r}
 tornadodata$FScale <- as.factor(tornadodata$FScale)
 tornado_model <- aov(Killed ~ FScale, data = tornadodata)
@@ -151,4 +152,8 @@ duckTukey <- TukeyHSD(tornado_model)
 duckTukey
 plot(duckTukey)
 ```
-
+#FScale vs. Killed Data Analysis
+The same was done for FScale vs. the number of people Killed. The analysis uses an ANOVA to test whether the average number of people killed differs significantly between tornadoes of different FScale ratings.The Tukey Test then identifies which specific FScale levels have statistically significant differences in fatalities. The plot shows the confidence intervals for the differences between the means. 
+# FScale vs. Killed Results
+The Tested showed there was there was a significant difference between 4-0, 5-0, 4-1, 5-1, 4-2, 5-2, and 4-3, 5-3, and 5-4.
+This suggests that fatalities as a result of F0-F3 tornadoes is relatively low; however, F4 and F5 tornadoes tend to result in an increase in fatalities. A significant difference between F4 and F5 tornadoes suggests F5 tornadoes are significantly deadlier. 
